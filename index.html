@@ -49,14 +49,50 @@
 <header class="fixed top-0 left-0 w-full bg-white/80 backdrop-blur-lg shadow-md z-50 transition-all duration-500">
   <div class="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
     <h1 class="text-2xl font-bold text-indigo-600">Salamon</h1>
-    <nav class="flex items-center gap-4">
+
+    <!-- Desktop Menu -->
+    <nav class="hidden md:flex items-center gap-4">
       <a href="#about" class="px-4 py-2 rounded-full text-gray-800 hover:text-white hover:bg-gradient-to-r hover:from-indigo-500 hover:via-purple-500 hover:to-pink-500 font-semibold transition transform hover:scale-105 shadow-sm">About</a>
       <a href="#skills" class="px-4 py-2 rounded-full text-gray-800 hover:text-white hover:bg-gradient-to-r hover:from-indigo-500 hover:via-purple-500 hover:to-pink-500 font-semibold transition transform hover:scale-105 shadow-sm">Skills</a>
       <a href="#projects" class="px-4 py-2 rounded-full text-gray-800 hover:text-white hover:bg-gradient-to-r hover:from-indigo-500 hover:via-purple-500 hover:to-pink-500 font-semibold transition transform hover:scale-105 shadow-sm">Projects</a>
       <a href="#contact" class="px-4 py-2 rounded-full text-gray-800 hover:text-white hover:bg-gradient-to-r hover:from-indigo-500 hover:via-purple-500 hover:to-pink-500 font-semibold transition transform hover:scale-105 shadow-sm">Contact</a>
     </nav>
+
+    <!-- Hamburger Menu (Mobile) -->
+    <div class="md:hidden flex items-center">
+      <button id="hamburger" class="relative w-8 h-8 focus:outline-none">
+        <span class="block absolute h-0.5 w-8 bg-gray-800 transform transition duration-300 ease-in-out top-2.5"></span>
+        <span class="block absolute h-0.5 w-8 bg-gray-800 transform transition duration-300 ease-in-out top-4"></span>
+        <span class="block absolute h-0.5 w-8 bg-gray-800 transform transition duration-300 ease-in-out top-5.5"></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobileMenu" class="hidden md:hidden px-6 pb-4">
+    <a href="#about" class="block py-2 text-gray-800 hover:text-white hover:bg-gradient-to-r hover:from-indigo-500 hover:via-purple-500 hover:to-pink-500 rounded transition">About</a>
+    <a href="#skills" class="block py-2 text-gray-800 hover:text-white hover:bg-gradient-to-r hover:from-indigo-500 hover:via-purple-500 hover:to-pink-500 rounded transition">Skills</a>
+    <a href="#projects" class="block py-2 text-gray-800 hover:text-white hover:bg-gradient-to-r hover:from-indigo-500 hover:via-purple-500 hover:to-pink-500 rounded transition">Projects</a>
+    <a href="#contact" class="block py-2 text-gray-800 hover:text-white hover:bg-gradient-to-r hover:from-indigo-500 hover:via-purple-500 hover:to-pink-500 rounded transition">Contact</a>
   </div>
 </header>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const bars = hamburger.querySelectorAll('span');
+
+  hamburger.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+
+    // Animate hamburger into X
+    bars[0].classList.toggle('rotate-45');
+    bars[0].classList.toggle('top-4');
+    bars[1].classList.toggle('opacity-0');
+    bars[2].classList.toggle('-rotate-45');
+    bars[2].classList.toggle('top-4');
+  });
+</script>
 
 
 <!-- Hero Section -->

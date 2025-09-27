@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Salamon | Portfolio</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/scrollreveal"></script>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  html { scroll-behavior: smooth; font-family: 'Poppins', sans-serif; }
+  .typing { border-right: .12em solid #fff; white-space: nowrap; overflow: hidden; animation: typing 4s steps(40,end), blink .75s step-end infinite; }
+  @keyframes typing { from { width: 0 } to { width: 100% } }
+  @keyframes blink { 50% { border-color: transparent } }
+
+  /* Animated gradient background */
+  @keyframes gradientBG { 0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%} }
+  .animated-gradient { background-size: 200% 200%; animation: gradientBG 15s ease infinite; }
+
+  /* Fade-in animation */
+  .fade-in { opacity: 0; transform: translateY(20px); animation: fadeInAnim 1s forwards; }
+  @keyframes fadeInAnim { to { opacity: 1; transform: translateY(0); } }
+
+  /* Project hover effect */
+  .project-card { perspective: 1000px; cursor: pointer; }
+  .project-card-inner { transition: transform 0.5s, background 0.3s, color 0.3s; transform-style: preserve-3d; }
+  .project-card:hover .project-card-inner { transform: scale(1.05); background-color: #e0e7ff; color: #1e3a8a; }
+
+  /* Input field design */
+  input, textarea { 
+    border: 2px solid #cbd5e1; 
+    padding: 0.75rem; 
+    border-radius: 1rem; 
+    transition: all 0.3s; 
+  }
+  input:focus, textarea:focus { 
+    outline: none; 
+    border-color: #6366f1; 
+    box-shadow: 0 0 8px rgba(99,102,241,0.4); 
+  }
+  html {
+    scroll-padding-top: 80px; /* height of navbar */
+  }
+</style>
+</head>
+<body class="transition-colors duration-500 bg-gray-100 text-gray-900">
+
+<!-- Navbar -->
+<header class="fixed top-0 left-0 w-full bg-white/80 backdrop-blur-lg shadow-md z-50 transition-all duration-500">
+  <div class="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
+    <h1 class="text-2xl font-bold text-indigo-600">Salamon</h1>
+    <nav class="flex items-center gap-4">
+      <a href="#about" class="px-4 py-2 rounded-full text-gray-800 hover:text-white hover:bg-gradient-to-r hover:from-indigo-500 hover:via-purple-500 hover:to-pink-500 font-semibold transition transform hover:scale-105 shadow-sm">About</a>
+      <a href="#skills" class="px-4 py-2 rounded-full text-gray-800 hover:text-white hover:bg-gradient-to-r hover:from-indigo-500 hover:via-purple-500 hover:to-pink-500 font-semibold transition transform hover:scale-105 shadow-sm">Skills</a>
+      <a href="#projects" class="px-4 py-2 rounded-full text-gray-800 hover:text-white hover:bg-gradient-to-r hover:from-indigo-500 hover:via-purple-500 hover:to-pink-500 font-semibold transition transform hover:scale-105 shadow-sm">Projects</a>
+      <a href="#contact" class="px-4 py-2 rounded-full text-gray-800 hover:text-white hover:bg-gradient-to-r hover:from-indigo-500 hover:via-purple-500 hover:to-pink-500 font-semibold transition transform hover:scale-105 shadow-sm">Contact</a>
+    </nav>
+  </div>
+</header>
+
+
+<!-- Hero Section -->
+<section class="h-screen flex flex-col justify-center items-center text-center px-6 animated-gradient bg-gradient-to-r from-indigo-500 via-purple-600 to-pink-500 text-white">
+  <h2 class="text-5xl sm:text-6xl md:text-7xl font-extrabold mb-4 drop-shadow-lg fade-in">Hi, I'm Salamon 👋</h2>
+  <p class="text-lg sm:text-xl md:text-2xl max-w-2xl drop-shadow-lg fade-in">
+    <span id="typing-text"></span>
+  </p>
+  <div class="mt-8 flex flex-col sm:flex-row gap-4">
+    <a href="https://drive.google.com/file/d/1UpYVS6REILUrylYt4FQuBS_1ZN1-BDU1/view?usp=drivesdk" download class="bg-white text-indigo-600 font-bold px-8 py-3 rounded-full shadow-lg hover:scale-105 transform transition">Download Resume</a>
+    <a href="#contact" class="border-2 border-white text-white px-8 py-3 rounded-full hover:bg-white hover:text-indigo-600 transition font-bold">Contact Me</a>
+  </div>
+</section>
+
+<!-- About Section -->
+<section id="about" class="py-24 px-6 bg-gradient-to-r from-indigo-50 via-purple-50 to-pink-50">
+  <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+    
+    <!-- Left: Text -->
+    <div class="space-y-6">
+      <h2 class="text-4xl font-bold text-indigo-600">About Me</h2>
+      <p class="text-gray-700 text-lg">
+        I am pursuing my MCA at <span class="font-semibold">Sri Manakula Vinayagar Engineering College</span> (CGPA: 9.07). Passionate about Full Stack Development and Cybersecurity, I create innovative real-world projects.
+      </p>
+      <p class="text-gray-700 text-lg">
+        I love exploring new technologies, enhancing coding skills, and contributing to open-source projects.
+      </p>
+    </div>
+    
+    <!-- Right: Modern Card with Floating Icons -->
+    <div class="relative bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 p-8 rounded-3xl shadow-2xl overflow-hidden transform transition hover:scale-105 duration-500">
+      
+      <!-- Card title -->
+      <h3 class="text-2xl font-bold text-white mb-4 text-center">Full Stack Developer & Cybersecurity Enthusiast</h3>
+      
+      <!-- Description -->
+      <p class="text-white text-lg mb-6 text-center">
+        I build web applications with modern technologies, focusing on responsive design, clean code, and secure solutions.  
+        I enjoy solving real-world problems and continuously learning new skills.
+      </p>
+      
+      <!-- Floating skill icons with glow effect -->
+      <div class="absolute top-4 left-6 animate-float">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" class="w-12 h-12 filter drop-shadow-lg"/>
+      </div>
+      <div class="absolute top-16 right-8 animate-float animation-delay-200">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" class="w-12 h-12 filter drop-shadow-lg"/>
+      </div>
+      <div class="absolute bottom-16 left-10 animate-float animation-delay-400">
+        <img src="https://img.icons8.com/color/48/000000/python.png" class="w-12 h-12 filter drop-shadow-lg"/>
+      </div>
+      <div class="absolute bottom-6 right-12 animate-float animation-delay-600">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" class="w-12 h-12 filter drop-shadow-lg"/>
+      </div>
+      
+      <!-- Optional: subtle glowing circles behind card for style -->
+      <div class="absolute w-32 h-32 bg-white opacity-10 rounded-full top-8 left-1/2 transform -translate-x-1/2 animate-pulse"></div>
+      <div class="absolute w-20 h-20 bg-white opacity-10 rounded-full bottom-4 right-1/4 animate-pulse delay-200"></div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Floating animation */
+  @keyframes float {
+    0% { transform: translateY(0) translateX(0); }
+    50% { transform: translateY(-15px) translateX(15px); }
+    100% { transform: translateY(0) translateX(0); }
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .animation-delay-200 { animation-delay: 0.5s; }
+  .animation-delay-400 { animation-delay: 1s; }
+  .animation-delay-600 { animation-delay: 1.5s; }
+
+  /* Pulsing background circles */
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 0.1; }
+    50% { transform: scale(1.2); opacity: 0.15; }
+  }
+
+  .animate-pulse {
+    animation: pulse 4s ease-in-out infinite;
+  }
+
+  .delay-200 { animation-delay: 2s; }
+</style>
+
+<!-- Achievements Section -->
+<section id="achievements" class="py-24 px-6 bg-gradient-to-r from-indigo-50 via-purple-50 to-pink-50">
+  <h2 class="text-4xl font-bold text-indigo-600 mb-12 text-center">Achievements</h2>
+
+  <div class="max-w-6xl mx-auto grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-10">
+
+    <!-- Achievement Card 1 -->
+    <div class="relative group perspective">
+      <div class="bg-gradient-to-tr from-indigo-200 to-purple-200 p-6 rounded-3xl shadow-2xl transform transition duration-500 group-hover:rotate-3 group-hover:scale-105">
+        <div class="flex items-center mb-4">
+          <div class="w-12 h-12 flex items-center justify-center bg-indigo-600 text-white rounded-full text-2xl mr-4">🏆</div>
+          <h3 class="text-xl font-bold text-indigo-700">Christ College of Engineering and Technology</h3>
+        </div>
+        <p class="text-gray-700">Won first prize in technical Quiz competition conducted by Christ College of Engineering and Technology.</p>
+      </div>
+    </div>
+
+    <!-- Achievement Card 2 -->
+    <div class="relative group perspective">
+      <div class="bg-gradient-to-tr from-purple-200 to-pink-200 p-6 rounded-3xl shadow-2xl transform transition duration-500 group-hover:-rotate-3 group-hover:scale-105">
+        <div class="flex items-center mb-4">
+          <div class="w-12 h-12 flex items-center justify-center bg-purple-600 text-white rounded-full text-2xl mr-4">🏆</div>
+          <h3 class="text-xl font-bold text-indigo-700">Pondicherry University</h3>
+        </div>
+        <p class="text-gray-700">Won first prize in technical Quiz competition conducted by Pondicherry University.</p>
+      </div>
+    </div>
+
+    <!-- Achievement Card 3 -->
+    <div class="relative group perspective">
+      <div class="bg-gradient-to-tr from-pink-200 to-indigo-200 p-6 rounded-3xl shadow-2xl transform transition duration-500 group-hover:rotate-2 group-hover:scale-105">
+        <div class="flex items-center mb-4">
+          <div class="w-12 h-12 flex items-center justify-center bg-pink-600 text-white rounded-full text-2xl mr-4">🏆</div>
+          <h3 class="text-xl font-bold text-indigo-700">Idhaya College of Arts & Science</h3>
+        </div>
+        <p class="text-gray-700">Won first prize in technical Quiz competition conducted by Idhaya College of Arts and Science for Women.</p>
+      </div>
+    </div>
+
+    <!-- Achievement Card 4 -->
+    <div class="relative group perspective">
+      <div class="bg-gradient-to-tr from-indigo-200 to-pink-200 p-6 rounded-3xl shadow-2xl transform transition duration-500 group-hover:-rotate-2 group-hover:scale-105">
+        <div class="flex items-center mb-4">
+          <div class="w-12 h-12 flex items-center justify-center bg-indigo-600 text-white rounded-full text-2xl mr-4">🎓</div>
+          <h3 class="text-xl font-bold text-indigo-700">Sri Manakula Vinayagar Engineering College</h3>
+        </div>
+        <p class="text-gray-700">Participated in AICTE-ATAL FDP on Digital Transformation in Manufacturing 4.0 & 5.0 organized by AICTE IDEA Lab.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+<!-- Certificates Section -->
+<section id="certificates" class="py-24 px-6 bg-gradient-to-r from-indigo-50 via-purple-50 to-pink-50">
+  <h2 class="text-4xl font-bold text-indigo-600 mb-12 text-center">Certificates</h2>
+
+  <div class="max-w-6xl mx-auto grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+    <!-- Certificate Card 1: CCNA -->
+    <div class="relative group perspective cursor-pointer">
+      <div class="bg-white rounded-3xl shadow-2xl p-6 overflow-hidden transform transition duration-500 group-hover:scale-105 group-hover:-rotate-1">
+        <div class="bg-gradient-to-r from-indigo-400 to-purple-500 p-3 rounded-xl mb-4 text-white font-bold text-lg">
+          CCNA: Switching, Routing & Wireless Essentials
+        </div>
+        <p class="text-gray-700 mb-2">📍 CISCO Academy | Jul 2025</p>
+        <div class="max-h-0 overflow-hidden group-hover:max-h-96 transition-all duration-500 ease-in-out">
+          <ul class="list-disc pl-5 text-gray-700 space-y-1">
+            <li>Completed CCNA certifications at CISCO Academy.</li>
+            <li>Configure VLANs and Inter-VLAN routing applying security best practices.</li>
+            <li>Configure dynamic address allocation in IPv6 networks.</li>
+            <li>Configure WLANs using a WLC and L2 security best practices.</li>
+            <li>Configure switch security to mitigate LAN attacks.</li>
+            <li>Configure IPv4 and IPv6 static routing on routers.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Certificate Card 2: Full Stack Web Development (Askan Academy) -->
+    <div class="relative group perspective cursor-pointer">
+      <div class="bg-white rounded-3xl shadow-2xl p-6 overflow-hidden transform transition duration-500 group-hover:scale-105 group-hover:rotate-1">
+        <div class="bg-gradient-to-r from-purple-400 to-pink-500 p-3 rounded-xl mb-4 text-white font-bold text-lg">
+          Full Stack Web Development
+        </div>
+        <p class="text-gray-700 mb-2">📍 Askan Academy | Aug 2024</p>
+        <div class="max-h-0 overflow-hidden group-hover:max-h-96 transition-all duration-500 ease-in-out">
+          <ul class="list-disc pl-5 text-gray-700 space-y-1">
+            <li>Completed Full Stack Developer Certifications at Askan Technologies (Aug-Oct 2024).</li>
+            <li>Learned HTML, CSS, JavaScript, PHP, NodeJS, Angular, MySQL.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Certificate Card 3: Full Stack Web Development (Udemy) -->
+    <div class="relative group perspective cursor-pointer">
+      <div class="bg-white rounded-3xl shadow-2xl p-6 overflow-hidden transform transition duration-500 group-hover:scale-105 group-hover:-rotate-2">
+        <div class="bg-gradient-to-r from-pink-400 to-indigo-500 p-3 rounded-xl mb-4 text-white font-bold text-lg">
+          Full Stack Web Development
+        </div>
+        <p class="text-gray-700 mb-2">📍 Udemy | Nov 2023</p>
+        <div class="max-h-0 overflow-hidden group-hover:max-h-96 transition-all duration-500 ease-in-out">
+          <ul class="list-disc pl-5 text-gray-700 space-y-1">
+            <li>Completed Full Stack Developer Certifications at Udemy.</li>
+            <li>Learned HTML, CSS, JavaScript, PHP, Bootstrap, MySQL.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- Skills Section -->
+<section id="skills" class="py-24 px-6 bg-gradient-to-r from-indigo-50 via-purple-50 to-pink-50 fade-in">
+  <h2 class="text-4xl font-bold mb-12 text-center text-black fade-in">My Skills</h2>
+  <div class="grid sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+    <div class="bg-white text-indigo-600 p-6 rounded-2xl shadow-xl text-center transform transition duration-500 hover:scale-105 hover:bg-indigo-100 hover:text-indigo-800">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" class="mx-auto mb-3 w-12 h-12"/>
+      <h3 class="font-bold text-lg">Java</h3>
+    </div>
+    <div class="bg-white text-indigo-600 p-6 rounded-2xl shadow-xl text-center transform transition duration-500 hover:scale-105 hover:bg-indigo-100 hover:text-indigo-800">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" class="mx-auto mb-3 w-12 h-12"/>
+      <h3 class="font-bold text-lg">C++</h3>
+    </div>
+    <div class="bg-white text-indigo-600 p-6 rounded-2xl shadow-xl text-center transform transition duration-500 hover:scale-105 hover:bg-indigo-100 hover:text-indigo-800">
+      <img src="https://img.icons8.com/color/48/000000/python.png" class="mx-auto mb-3"/>
+      <h3 class="font-bold text-lg">Python</h3>
+    </div>
+    <div class="bg-white text-indigo-600 p-6 rounded-2xl shadow-xl text-center transform transition duration-500 hover:scale-105 hover:bg-indigo-100 hover:text-indigo-800">
+      <img src="https://img.icons8.com/color/48/000000/javascript.png" class="mx-auto mb-3"/>
+      <h3 class="font-bold text-lg">JavaScript</h3>
+    </div>
+    <div class="bg-white text-indigo-600 p-6 rounded-2xl shadow-xl text-center transform transition duration-500 hover:scale-105 hover:bg-indigo-100 hover:text-indigo-800">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" class="mx-auto mb-3 w-12 h-12"/>
+      <h3 class="font-bold text-lg">PHP</h3>
+    </div>
+    <div class="bg-white text-indigo-600 p-6 rounded-2xl shadow-xl text-center transform transition duration-500 hover:scale-105 hover:bg-indigo-100 hover:text-indigo-800">
+      <img src="https://img.icons8.com/color/48/000000/sql.png" class="mx-auto mb-3"/>
+      <h3 class="font-bold text-lg">SQL</h3>
+    </div>
+    <div class="bg-white text-indigo-600 p-6 rounded-2xl shadow-xl text-center transform transition duration-500 hover:scale-105 hover:bg-indigo-100 hover:text-indigo-800">
+      <img src="https://img.icons8.com/color/48/000000/react-native.png" class="mx-auto mb-3"/>
+      <h3 class="font-bold text-lg">React</h3>
+    </div>
+    <div class="bg-white text-indigo-600 p-6 rounded-2xl shadow-xl text-center transform transition duration-500 hover:scale-105 hover:bg-indigo-100 hover:text-indigo-800">
+      <img src="https://img.icons8.com/color/48/000000/c-programming.png" class="mx-auto mb-3"/>
+      <h3 class="font-bold text-lg">C</h3>
+    </div>
+  </div>
+</section>
+
+<!-- Projects Section -->
+<section id="projects" class="py-24 px-6 bg-gradient-to-r from-indigo-50 via-purple-50 to-pink-50 text-gray-900">
+  <h2 class="text-4xl font-bold mb-12 text-center text-indigo-600">Projects</h2>
+  <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+
+    <!-- Project 1: Credit Card Fraud Detection -->
+    <div class="relative group perspective cursor-pointer">
+      <div class="bg-white rounded-3xl shadow-2xl p-6 transform transition duration-500 group-hover:scale-105 group-hover:-rotate-1 overflow-hidden">
+        <div class="bg-gradient-to-r from-indigo-400 to-purple-500 p-3 rounded-xl mb-4 text-white font-bold text-lg">
+          Credit Card Fraud Detection
+        </div>
+        <div class="max-h-0 overflow-hidden group-hover:max-h-64 transition-all duration-500 ease-in-out">
+          <p class="text-gray-700 mb-2">
+            This project uses <span class="font-semibold">Python</span> and <span class="font-semibold">Scikit-learn</span> to build a machine learning model capable of detecting fraudulent credit card transactions. The dataset is balanced using <span class="font-semibold">SMOTE</span> to improve accuracy. The system can predict fraud in real-time, making it practical for banking applications.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 2: Hospital Chatbot -->
+    <div class="relative group perspective cursor-pointer">
+      <div class="bg-white rounded-3xl shadow-2xl p-6 transform transition duration-500 group-hover:scale-105 group-hover:rotate-1 overflow-hidden">
+        <div class="bg-gradient-to-r from-purple-400 to-pink-500 p-3 rounded-xl mb-4 text-white font-bold text-lg">
+          Hospital Chatbot
+        </div>
+        <div class="max-h-0 overflow-hidden group-hover:max-h-64 transition-all duration-500 ease-in-out">
+          <p class="text-gray-700 mb-2">
+            A <span class="font-semibold">PHP</span> and <span class="font-semibold">MySQL</span> chatbot designed to automate hospital inquiries. It includes an <span class="font-semibold">admin panel</span> for monitoring questions and answers, improving response times, and reducing manual workload. Ideal for patient support and appointment scheduling.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 3: Hospital Management System -->
+    <div class="relative group perspective cursor-pointer">
+      <div class="bg-white rounded-3xl shadow-2xl p-6 transform transition duration-500 group-hover:scale-105 group-hover:-rotate-2 overflow-hidden">
+        <div class="bg-gradient-to-r from-pink-400 to-indigo-500 p-3 rounded-xl mb-4 text-white font-bold text-lg">
+          Hospital Management System
+        </div>
+        <div class="max-h-0 overflow-hidden group-hover:max-h-64 transition-all duration-500 ease-in-out">
+          <p class="text-gray-700 mb-2">
+            A comprehensive web application built using <span class="font-semibold">PHP</span>, <span class="font-semibold">MySQL</span>, and <span class="font-semibold">HTML/CSS</span> to manage hospital operations. Features include patient record management, appointment scheduling, billing, and staff management. Streamlines workflow and enhances efficiency in hospital management.
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- Contact Section -->
+<section id="contact" class="py-24 px-6 bg-gradient-to-r from-indigo-50 via-purple-50 to-pink-50 text-gray-900 text-center">
+  <h2 class="text-4xl font-bold mb-8 fade-in">Get in Touch</h2>
+  <p class="text-lg mb-6">Send me a message directly:</p>
+  <form action="mailto:salamonsavari2608@gmail.com" method="post" enctype="text/plain" class="max-w-xl mx-auto flex flex-col gap-6">
+    <input type="text" name="Name" placeholder="Your Name" class="p-4 rounded-3xl border-2 border-gray-300 focus:ring-2 focus:ring-indigo-500 shadow-md focus:shadow-lg transition-all duration-300" required>
+    <input type="email" name="Email" placeholder="Your Email" class="p-4 rounded-3xl border-2 border-gray-300 focus:ring-2 focus:ring-indigo-500 shadow-md focus:shadow-lg transition-all duration-300" required>
+    <textarea name="Message" rows="5" placeholder="Your Message" class="p-4 rounded-3xl border-2 border-gray-300 focus:ring-2 focus:ring-indigo-500 shadow-md focus:shadow-lg transition-all duration-300" required></textarea>
+    <button type="submit" class="bg-indigo-600 text-white font-bold px-6 py-3 rounded-full hover:bg-indigo-700 transition-all duration-300">Send Message</button>
+  </form>
+</section>
+
+
+<footer class="bg-white py-6 text-center text-gray-500 relative">
+  <div class="flex justify-center space-x-6 mb-4">
+    <a href="https://github.com/Salamon2608" target="_blank" class="w-12 h-12 bg-gray-800 text-white rounded-full flex items-center justify-center shadow-lg hover:bg-indigo-600 transition transform hover:scale-110">
+      <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 .5C5.37.5 0 5.87 0 12.5c0 5.28 3.438 9.75 8.205 11.33.6.11.82-.26.82-.58v-2.03c-3.338.73-4.033-1.61-4.033-1.61-.546-1.39-1.333-1.76-1.333-1.76-1.09-.75.082-.74.082-.74 1.204.086 1.837 1.238 1.837 1.238 1.07 1.835 2.807 1.305 3.492.997.107-.776.418-1.305.762-1.605-2.665-.3-5.467-1.332-5.467-5.933 0-1.31.468-2.38 1.236-3.22-.124-.303-.536-1.523.117-3.176 0 0 1.008-.322 3.3 1.23a11.47 11.47 0 013.003-.404c1.018.005 2.043.137 3.003.404 2.29-1.552 3.297-1.23 3.297-1.23.655 1.653.243 2.873.12 3.176.77.84 1.235 1.91 1.235 3.22 0 4.61-2.807 5.63-5.48 5.927.43.37.823 1.096.823 2.21v3.277c0 .32.218.694.825.577C20.565 22.247 24 17.78 24 12.5 24 5.87 18.627.5 12 .5z"/></svg>
+    </a>
+    <a href="https://www.linkedin.com/in/salamon08/" target="_blank" class="w-12 h-12 bg-gray-800 text-white rounded-full flex items-center justify-center shadow-lg hover:bg-blue-600 transition transform hover:scale-110">
+      <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M4.98 3.5C3.33 3.5 2 4.828 2 6.48s1.33 2.98 2.98 2.98 2.98-1.33 2.98-2.98S6.63 3.5 4.98 3.5zM2.4 21h5.16v-11H2.4v11zM9.56 10.04h4.92v1.5h.07c.68-1.28 2.33-2.63 4.8-2.63 5.13 0 6.08 3.37 6.08 7.75v8.38h-5.16v-7.43c0-1.77-.03-4.05-2.47-4.05-2.47 0-2.85 1.93-2.85 3.92v7.56h-5.16v-11z"/></svg>
+    </a>
+    <a href="mailto:salamonsavari2608@gmail.com" class="w-12 h-12 bg-gray-800 text-white rounded-full flex items-center justify-center shadow-lg hover:bg-red-600 transition transform hover:scale-110">
+      <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M2 4v16h20V4H2zm18 2v.511l-8 5.333-8-5.333V6h16zm-16 12V9.389l7.386 4.923c.267.178.593.178.86 0L20 9.389V18H4z"/></svg>
+    </a>
+  </div>
+  <p>© 2025 Salamon | All Rights Reserved</p>
+</footer>
+
+
+<script>
+        // Typing Effect - Faster
+  const typingText = document.getElementById('typing-text');
+  const textArray = [
+    "MCA Student",
+    "Full Stack Developer",
+    "Cybersecurity Enthusiast"
+  ];
+  const typingDelay = 50;    // Faster typing (default 100ms)
+  const erasingDelay = 30;   // Faster erasing (default 50ms)
+  const newTextDelay = 1500; // Delay between texts (default 2000ms)
+  let textArrayIndex = 0;
+  let charIndex = 0;
+
+  function type() {
+    if (charIndex < textArray[textArrayIndex].length) {
+      typingText.textContent += textArray[textArrayIndex].charAt(charIndex);
+      charIndex++;
+      setTimeout(type, typingDelay);
+    } else {
+      setTimeout(erase, newTextDelay);
+    }
+  }
+
+  function erase() {
+    if (charIndex > 0) {
+      typingText.textContent = textArray[textArrayIndex].substring(0, charIndex - 1);
+      charIndex--;
+      setTimeout(erase, erasingDelay);
+    } else {
+      textArrayIndex++;
+      if (textArrayIndex >= textArray.length) textArrayIndex = 0;
+      setTimeout(type, typingDelay + 200);
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    setTimeout(type, 500); // Start typing after 0.5 second
+  });
+  // Scroll Reveal
+  ScrollReveal().reveal('section', { duration:1000, origin:'bottom', distance:'50px', reset:true, easing:'ease-in-out' });
+
+  // Project hover description
+  const projectCards = document.querySelectorAll('.project-card');
+  projectCards.forEach(card => {
+    card.addEventListener('mouseenter', () => {
+      card.querySelector('.project-desc').textContent = "Click to explore the details of this project and learn more!";
+    });
+    card.addEventListener('mouseleave', () => {
+      if(card.querySelector('h3').textContent.includes("Credit")) {
+        card.querySelector('.project-desc').textContent = "ML model using Python & Scikit-learn with SMOTE to detect fraud transactions.";
+      } else if(card.querySelector('h3').textContent.includes("Chatbot")) {
+        card.querySelector('.project-desc').textContent = "Interactive PHP & MySQL chatbot with admin panel for automated queries.";
+      } else if(card.querySelector('h3').textContent.includes("Hospital Management")) {
+        card.querySelector('.project-desc').textContent = "Manage appointments, patient records, and medical data efficiently.";
+      }
+    });
+  });
+</script>
+</body>
+</html>

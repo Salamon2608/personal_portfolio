@@ -7,39 +7,79 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://unpkg.com/scrollreveal"></script>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Lato:wght@400;500;700&display=swap" rel="stylesheet">
+
 <style>
-  html { scroll-behavior: smooth; font-family: 'Poppins', sans-serif; }
-  .typing { border-right: .12em solid #fff; white-space: nowrap; overflow: hidden; animation: typing 4s steps(40,end), blink .75s step-end infinite; }
+  /* Global font (body text) */
+  html, body {
+    font-family: 'Lato', sans-serif;
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px; /* height of navbar */
+  }
+
+  /* Headings use Montserrat */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  /* Typing animation */
+  .typing {
+    border-right: .12em solid #fff;
+    white-space: nowrap;
+    overflow: hidden;
+    animation: typing 4s steps(40,end), blink .75s step-end infinite;
+  }
   @keyframes typing { from { width: 0 } to { width: 100% } }
   @keyframes blink { 50% { border-color: transparent } }
 
   /* Animated gradient background */
-  @keyframes gradientBG { 0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%} }
-  .animated-gradient { background-size: 200% 200%; animation: gradientBG 15s ease infinite; }
+  @keyframes gradientBG {
+    0% { background-position: 0% 50% }
+    50% { background-position: 100% 50% }
+    100% { background-position: 0% 50% }
+  }
+  .animated-gradient {
+    background-size: 200% 200%;
+    animation: gradientBG 15s ease infinite;
+  }
 
   /* Fade-in animation */
-  .fade-in { opacity: 0; transform: translateY(20px); animation: fadeInAnim 1s forwards; }
-  @keyframes fadeInAnim { to { opacity: 1; transform: translateY(0); } }
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInAnim 1s forwards;
+  }
+  @keyframes fadeInAnim {
+    to { opacity: 1; transform: translateY(0); }
+  }
 
   /* Project hover effect */
-  .project-card { perspective: 1000px; cursor: pointer; }
-  .project-card-inner { transition: transform 0.5s, background 0.3s, color 0.3s; transform-style: preserve-3d; }
-  .project-card:hover .project-card-inner { transform: scale(1.05); background-color: #e0e7ff; color: #1e3a8a; }
+  .project-card {
+    perspective: 1000px;
+    cursor: pointer;
+  }
+  .project-card-inner {
+    transition: transform 0.5s, background 0.3s, color 0.3s;
+    transform-style: preserve-3d;
+  }
+  .project-card:hover .project-card-inner {
+    transform: scale(1.05);
+    background-color: #e0e7ff;
+    color: #1e3a8a;
+  }
 
   /* Input field design */
-  input, textarea { 
-    border: 2px solid #cbd5e1; 
-    padding: 0.75rem; 
-    border-radius: 1rem; 
-    transition: all 0.3s; 
+  input, textarea {
+    border: 2px solid #cbd5e1;
+    padding: 0.75rem;
+    border-radius: 1rem;
+    transition: all 0.3s;
+    font-family: inherit; /* inherits body font */
   }
-  input:focus, textarea:focus { 
-    outline: none; 
-    border-color: #6366f1; 
-    box-shadow: 0 0 8px rgba(99,102,241,0.4); 
-  }
-  html {
-    scroll-padding-top: 80px; /* height of navbar */
+  input:focus, textarea:focus {
+    outline: none;
+    border-color: #6366f1;
+    box-shadow: 0 0 8px rgba(99,102,241,0.4);
   }
 </style>
 </head>

@@ -11,6 +11,25 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // 1b. Mobile Menu Toggle
+    const menuToggle = document.getElementById('menu-toggle');
+    const navLinksList = document.querySelector('.nav-links');
+
+    if (menuToggle) {
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            navLinksList.classList.toggle('active');
+        });
+    }
+
+    // Close menu when clicking links
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            menuToggle.classList.remove('active');
+            navLinksList.classList.remove('active');
+        });
+    });
+
     // 2. Typing Effect
     const typingText = document.querySelector('.typing');
     const roles = [

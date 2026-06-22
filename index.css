@@ -316,7 +316,7 @@ nav.scrolled {
     overflow: hidden;
     background: linear-gradient(-45deg, var(--bg-dark), #1a1a2e, var(--bg-dark), #1c1124);
     background-size: 400% 400%;
-    animation: gradient-shift 15s ease infinite;
+    animation: gradient-shift 15s linear infinite;
 }
 
 .hero-content {
@@ -336,7 +336,7 @@ h1.hero-title {
     font-size: clamp(3rem, 8vw, 5.5rem);
     line-height: 1.1;
     margin-bottom: 1.5rem;
-    animation: titleReveal 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    animation: titleReveal 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards, text-color-sync 15s linear infinite;
     transition: var(--transition);
     cursor: default;
 }
@@ -375,6 +375,27 @@ h1.hero-title:hover {
     color: var(--text-muted);
     margin-bottom: 2.5rem;
     min-height: 1.6em;
+    animation: text-muted-sync 15s linear infinite;
+}
+
+@keyframes text-color-sync {
+    0%, 5% { color: var(--text-main); }
+    10%, 18% { color: #ffffff; }
+    30%, 42% { color: var(--text-main); }
+    47%, 53% { color: #ffffff; }
+    58%, 70% { color: var(--text-main); }
+    82%, 90% { color: #ffffff; }
+    95%, 100% { color: var(--text-main); }
+}
+
+@keyframes text-muted-sync {
+    0%, 5% { color: var(--text-muted); }
+    10%, 18% { color: rgba(255, 255, 255, 0.9); }
+    30%, 42% { color: var(--text-muted); }
+    47%, 53% { color: rgba(255, 255, 255, 0.9); }
+    58%, 70% { color: var(--text-muted); }
+    82%, 90% { color: rgba(255, 255, 255, 0.9); }
+    95%, 100% { color: var(--text-muted); }
 }
 
 /* Education & Experience Timeline */
@@ -1028,5 +1049,26 @@ h1.hero-title:hover {
 
     .timeline-item::before {
         left: -1.65rem;
+    }
+}
+
+/* Performance Optimization for Mobile/Low-end devices */
+@media (max-width: 768px) {
+    .glass, nav, .nav-links {
+        backdrop-filter: blur(8px) saturate(150%);
+        -webkit-backdrop-filter: blur(8px) saturate(150%);
+    }
+    
+    .project-card::after {
+        display: none; /* Disable expensive glass shine on mobile */
+    }
+    
+    .hover-float:hover {
+        animation: none; /* Disable continuous floating animation on mobile */
+        transform: translateY(-5px); /* Simple transform instead */
+    }
+    
+    #hero, .logo, .hero-title .gradient-text {
+        animation: none !important; /* Disable heavy background-position animations */
     }
 }

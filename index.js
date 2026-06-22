@@ -3,13 +3,20 @@
 document.addEventListener('DOMContentLoaded', () => {
     // 1. Navbar Scroll Effect
     const nav = document.getElementById('main-nav');
+    let isScrolling = false;
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 100) {
-            nav.classList.add('scrolled');
-        } else {
-            nav.classList.remove('scrolled');
+        if (!isScrolling) {
+            window.requestAnimationFrame(() => {
+                if (window.scrollY > 100) {
+                    nav.classList.add('scrolled');
+                } else {
+                    nav.classList.remove('scrolled');
+                }
+                isScrolling = false;
+            });
+            isScrolling = true;
         }
-    });
+    }, { passive: true });
 
     // 1b. Mobile Menu Toggle
     const menuToggle = document.getElementById('menu-toggle');
@@ -107,8 +114,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const ctx = canvas.getContext('2d');
     let particles = [];
     let packets = [];
-    const particleCount = 180;
-    const connectionDistance = 180;
+    let particleCount = window.innerWidth < 768 ? 40 : 100; // Drastically reduced for performance
+    let connectionDistance = window.innerWidth < 768 ? 90 : 140;
+    let connectionDistanceSquared = connectionDistance * connectionDistance;
     const mouse = { x: null, y: null, radius: 200 };
 
     window.addEventListener('mousemove', (e) => {
@@ -120,7 +128,17 @@ document.addEventListener('DOMContentLoaded', () => {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
     }
-    window.addEventListener('resize', resize);
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+            resize();
+            particleCount = window.innerWidth < 768 ? 40 : 100;
+            connectionDistance = window.innerWidth < 768 ? 90 : 140;
+            connectionDistanceSquared = connectionDistance * connectionDistance;
+            init();
+        }, 200);
+    });
     resize();
 
     class Particle {
@@ -188,12 +206,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const y = this.start.y + (this.end.y - this.start.y) * this.progress;
             
             ctx.fillStyle = this.color;
-            ctx.shadowBlur = 10;
-            ctx.shadowColor = this.color;
+            // Removed shadowBlur as it causes severe performance drops on canvas
             ctx.beginPath();
             ctx.arc(x, y, 2.5, 0, Math.PI * 2);
             ctx.fill();
-            ctx.shadowBlur = 0;
         }
     }
 
@@ -205,7 +221,20 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    function animate() {
+    let lastTime = 0;
+    const fps = 30; // Target 30fps to reduce CPU/GPU load
+    const fpsInterval = 1000 / fps;
+
+    function animate(time) {
+        requestAnimationFrame(animate);
+        
+        if (!time) time = performance.now();
+        const elapsed = time - lastTime;
+        
+        // Throttle to target FPS
+        if (elapsed < fpsInterval) return;
+        lastTime = time - (elapsed % fpsInterval);
+
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         
         ctx.lineWidth = 0.8;
@@ -213,9 +242,10 @@ document.addEventListener('DOMContentLoaded', () => {
             for (let j = i + 1; j < particles.length; j++) {
                 const dx = particles[i].x - particles[j].x;
                 const dy = particles[i].y - particles[j].y;
-                const distance = Math.sqrt(dx * dx + dy * dy);
+                const distanceSquared = dx * dx + dy * dy;
                 
-                if (distance < connectionDistance) {
+                if (distanceSquared < connectionDistanceSquared) {
+                    const distance = Math.sqrt(distanceSquared);
                     // Circuit-style connections (Orthogonal hint)
                     ctx.beginPath();
                     ctx.strokeStyle = `rgba(79, 70, 229, ${0.1 * (1 - distance/connectionDistance)})`;
@@ -249,8 +279,9 @@ document.addEventListener('DOMContentLoaded', () => {
             particles.forEach(p => {
                 const dx = p.x - mouse.x;
                 const dy = p.y - mouse.y;
-                const distance = Math.sqrt(dx * dx + dy * dy);
-                if (distance < mouse.radius) {
+                const distanceSquared = dx * dx + dy * dy;
+                if (distanceSquared < (mouse.radius * mouse.radius)) {
+                    const distance = Math.sqrt(distanceSquared);
                     ctx.beginPath();
                     ctx.strokeStyle = `rgba(147, 51, 234, ${0.1 * (1 - distance/mouse.radius)})`;
                     ctx.moveTo(p.x, p.y);
@@ -259,10 +290,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         }
-
-        requestAnimationFrame(animate);
     }
 
     init();
-    animate();
+    requestAnimationFrame(animate);
 });

@@ -1068,7 +1068,7 @@ h1.hero-title:hover {
         transform: translateY(-5px); /* Simple transform instead */
     }
     
-    #hero, .logo, .hero-title .gradient-text {
-        animation: none !important; /* Disable heavy background-position animations */
+    #hero, .logo, .hero-title, .hero-title .gradient-text, .typing-container {
+        animation: none !important; /* Disable heavy background-position and sync animations */
     }
 }
